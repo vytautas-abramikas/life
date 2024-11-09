@@ -8,7 +8,7 @@ export const App: React.FC = () => {
   const height = 50; // example height
   const initialCells: TCell[][] = Array.from({ length: height }, () =>
     Array.from({ length: width }, () => ({
-      isAlive: Math.random() > 0.5,
+      isAlive: Math.random() > 0.8,
       isClickable: true,
     }))
   );

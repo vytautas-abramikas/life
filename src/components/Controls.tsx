@@ -27,7 +27,7 @@ export const Controls: React.FC = () => {
     setLatticeWidth(localWidth);
     setLatticeHeight(localHeight);
     const newLattice: boolean[][] = Array.from({ length: localHeight }, () =>
-      Array.from({ length: localWidth }, () => Math.random() > 0.9)
+      Array.from({ length: localWidth }, () => false)
     );
     setCurrentLattice(newLattice);
   };
@@ -42,6 +42,22 @@ export const Controls: React.FC = () => {
       setSavedStartingLattice(currentLattice);
     }
     setIsRunning(true);
+  };
+
+  const clearLattice = () => {
+    const emptyLattice: boolean[][] = Array.from(
+      { length: latticeHeight },
+      () => Array.from({ length: latticeWidth }, () => false)
+    );
+    setCurrentLattice(emptyLattice);
+  };
+
+  const randomizeLattice = () => {
+    const randomLattice: boolean[][] = Array.from(
+      { length: latticeHeight },
+      () => Array.from({ length: latticeWidth }, () => Math.random() > 0.9)
+    );
+    setCurrentLattice(randomLattice);
   };
 
   return (
@@ -65,7 +81,7 @@ export const Controls: React.FC = () => {
       <label className="">Delay:</label>
       <input
         type="number"
-        value={delay}
+        value={delay === 0 ? "" : delay}
         onChange={(e) => setDelay(Number(e.target.value))}
         disabled={isRunning}
         className="text-black w-[5%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
@@ -116,6 +132,24 @@ export const Controls: React.FC = () => {
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
           ⚒️
+        </button>
+      )}
+      {generation === 0 && currentLattice && (
+        <button
+          onClick={clearLattice}
+          className="rounded p-1 ml-1"
+          style={{ fontSize: "min(4vh, 4vw)" }}
+        >
+          🧹
+        </button>
+      )}
+      {generation === 0 && currentLattice && (
+        <button
+          onClick={randomizeLattice}
+          className="rounded p-1 ml-1"
+          style={{ fontSize: "min(4vh, 4vw)" }}
+        >
+          🎲
         </button>
       )}
     </div>

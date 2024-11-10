@@ -13,25 +13,13 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [latticeType, setLatticeType] = useState<TLatticeType>("toroidal");
   const [latticeWidth, setLatticeWidth] = useState<number>(100);
   const [latticeHeight, setLatticeHeight] = useState<number>(50);
-  const [delay, setDelay] = useState<number>(0);
+  const [delay, setDelay] = useState<number>(100);
   const [currentLattice, setCurrentLattice] = useState<boolean[][] | null>(
     null
   );
   const [savedStartingLattice, setSavedStartingLattice] = useState<
     boolean[][] | null
   >(null);
-
-  useEffect(() => {
-    const initialLattice: boolean[][] = Array.from(
-      { length: latticeHeight },
-      () => Array.from({ length: latticeWidth }, () => Math.random() > 0.9)
-    );
-    setCurrentLattice(initialLattice);
-    setPopulation(getPopulation(initialLattice));
-    setTimeout(() => {
-      setIsRunning(true);
-    }, delay * 5);
-  }, []);
 
   useEffect(() => {
     if (generation === 0) {

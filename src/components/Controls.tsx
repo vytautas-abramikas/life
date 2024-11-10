@@ -3,6 +3,7 @@ import { useAppContext } from "../hooks/useAppContext";
 
 export const Controls: React.FC = () => {
   const {
+    currentLattice,
     latticeWidth,
     latticeHeight,
     delay,
@@ -73,16 +74,7 @@ export const Controls: React.FC = () => {
         <option value="toroidal">Toroidal</option>
         <option value="bounded">Bounded</option>
       </select>
-      {generation === 0 && (
-        <button
-          onClick={handleCreateLattice}
-          className="rounded p-1 ml-1"
-          style={{ fontSize: "min(4vh, 4vw)" }}
-        >
-          ⚒️
-        </button>
-      )}
-      {!isRunning ? (
+      {!isRunning && currentLattice && (
         <button
           onClick={() => setIsRunning(true)}
           className="rounded ml-1"
@@ -90,7 +82,8 @@ export const Controls: React.FC = () => {
         >
           ▶️
         </button>
-      ) : (
+      )}
+      {isRunning && (
         <button
           onClick={() => setIsRunning(false)}
           className="rounded ml-1"
@@ -106,6 +99,15 @@ export const Controls: React.FC = () => {
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
           ⏪
+        </button>
+      )}
+      {generation === 0 && (
+        <button
+          onClick={handleCreateLattice}
+          className="rounded p-1 ml-1"
+          style={{ fontSize: "min(4vh, 4vw)" }}
+        >
+          ⚒️
         </button>
       )}
     </div>

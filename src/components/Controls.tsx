@@ -11,6 +11,7 @@ export const Controls: React.FC = () => {
     generation,
     latticeType,
     setCurrentLattice,
+    setSavedStartingLattice,
     setDelay,
     setIsRunning,
     setLatticeWidth,
@@ -34,6 +35,13 @@ export const Controls: React.FC = () => {
   const handleJumpToStart = () => {
     setIsRunning(false);
     setGeneration(0);
+  };
+
+  const handleStartRunning = () => {
+    if (generation === 0) {
+      setSavedStartingLattice(currentLattice);
+    }
+    setIsRunning(true);
   };
 
   return (
@@ -76,7 +84,7 @@ export const Controls: React.FC = () => {
       </select>
       {!isRunning && currentLattice && (
         <button
-          onClick={() => setIsRunning(true)}
+          onClick={handleStartRunning}
           className="rounded ml-1"
           style={{ fontSize: "min(4vh, 4vw)" }}
         >

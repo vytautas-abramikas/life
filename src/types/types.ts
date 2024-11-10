@@ -21,4 +21,7 @@ export type TAppContextProps = {
   setLatticeHeight: React.Dispatch<React.SetStateAction<number>>;
   setDelay: React.Dispatch<React.SetStateAction<number>>;
   setCurrentLattice: React.Dispatch<React.SetStateAction<boolean[][] | null>>;
+  setSavedStartingLattice: React.Dispatch<
+    React.SetStateAction<boolean[][] | null>
+  >;
 };

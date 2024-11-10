@@ -26,7 +26,6 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if (savedStartingLattice) {
         setCurrentLattice(savedStartingLattice);
       }
-      setSavedStartingLattice(currentLattice);
     }
     if (isRunning && currentLattice) {
       const nextLattice = getNextGeneration(currentLattice, latticeType);
@@ -59,6 +58,7 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setLatticeHeight,
         setDelay,
         setCurrentLattice,
+        setSavedStartingLattice,
       }}
     >
       {children}

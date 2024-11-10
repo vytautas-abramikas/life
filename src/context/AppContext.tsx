@@ -17,6 +17,9 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [currentLattice, setCurrentLattice] = useState<boolean[][] | null>(
     null
   );
+  const [savedStartingLattice, setSavedStartingLattice] = useState<
+    boolean[][] | null
+  >(null);
 
   useEffect(() => {
     const initialLattice: boolean[][] = Array.from(
@@ -31,6 +34,12 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    if (generation === 0) {
+      if (savedStartingLattice) {
+        setCurrentLattice(savedStartingLattice);
+      }
+      setSavedStartingLattice(currentLattice);
+    }
     if (isRunning && currentLattice) {
       const nextLattice = getNextGeneration(currentLattice, latticeType);
       setTimeout(() => {

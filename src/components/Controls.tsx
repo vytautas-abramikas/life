@@ -42,7 +42,7 @@ export const Controls: React.FC = () => {
         type="number"
         value={localWidth}
         onChange={(e) => setLocalWidth(Number(e.target.value))}
-        disabled={isRunning}
+        disabled={isRunning || generation !== 0}
         className="text-black w-[5%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
       />
       <label className="">Height:</label>
@@ -50,7 +50,7 @@ export const Controls: React.FC = () => {
         type="number"
         value={localHeight}
         onChange={(e) => setLocalHeight(Number(e.target.value))}
-        disabled={isRunning}
+        disabled={isRunning || generation !== 0}
         className="text-black w-[5%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
       />
       <label className="">Delay:</label>
@@ -58,9 +58,10 @@ export const Controls: React.FC = () => {
         type="number"
         value={delay}
         onChange={(e) => setDelay(Number(e.target.value))}
-        className="text-black w-[5%] p-1 ml-2 mr-4 rounded-md"
+        disabled={isRunning}
+        className="text-black w-[5%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
       />
-      <label className="">Lattice Type:</label>
+      <label className="">Type:</label>
       <select
         value={latticeType}
         onChange={(e) =>
@@ -72,7 +73,7 @@ export const Controls: React.FC = () => {
         <option value="toroidal">Toroidal</option>
         <option value="bounded">Bounded</option>
       </select>
-      {(latticeWidth !== localWidth || latticeHeight !== localHeight) && (
+      {generation === 0 && (
         <button
           onClick={handleCreateLattice}
           className="rounded p-1 ml-1"
@@ -101,7 +102,7 @@ export const Controls: React.FC = () => {
       {generation > 0 && !isRunning && (
         <button
           onClick={handleJumpToStart}
-          className="rounded py-1 px-2 ml-1"
+          className="rounded ml-1"
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
           ⏪

@@ -23,6 +23,34 @@ export const Controls: React.FC = () => {
   const [localWidth, setLocalWidth] = useState(latticeWidth);
   const [localHeight, setLocalHeight] = useState(latticeHeight);
 
+  const handleSetLocalWidth = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = Number(e.target.value);
+    if (value < 1) {
+      value = 1;
+    } else if (value > 150) {
+      value = 150;
+    }
+    setLocalWidth(value);
+  };
+  const handleSetLocalHeight = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = Number(e.target.value);
+    if (value < 1) {
+      value = 1;
+    } else if (value > 150) {
+      value = 150;
+    }
+    setLocalHeight(value);
+  };
+  const handleSetDelay = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = Number(e.target.value);
+    if (value < 0) {
+      value = 0;
+    } else if (value > 1000) {
+      value = 1000;
+    }
+    setDelay(value);
+  };
+
   const handleCreateLattice = () => {
     setLatticeWidth(localWidth);
     setLatticeHeight(localHeight);
@@ -66,7 +94,7 @@ export const Controls: React.FC = () => {
       <input
         type="number"
         value={localWidth}
-        onChange={(e) => setLocalWidth(Number(e.target.value))}
+        onChange={handleSetLocalWidth}
         disabled={isRunning || generation !== 0}
         className="text-black w-[5%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
       />
@@ -74,7 +102,7 @@ export const Controls: React.FC = () => {
       <input
         type="number"
         value={localHeight}
-        onChange={(e) => setLocalHeight(Number(e.target.value))}
+        onChange={handleSetLocalHeight}
         disabled={isRunning || generation !== 0}
         className="text-black w-[5%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
       />
@@ -82,7 +110,7 @@ export const Controls: React.FC = () => {
       <input
         type="number"
         value={delay === 0 ? "" : delay}
-        onChange={(e) => setDelay(Number(e.target.value))}
+        onChange={handleSetDelay}
         disabled={isRunning}
         className="text-black w-[5%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
       />

@@ -10,8 +10,8 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [generation, setGeneration] = useState<number>(0);
   const [population, setPopulation] = useState<number>(0);
   const [latticeType, setLatticeType] = useState<TLatticeType>("toroidal");
-  const [latticeWidth, setLatticeWidth] = useState<number>(100);
-  const [latticeHeight, setLatticeHeight] = useState<number>(50);
+  const [latticeWidth, setLatticeWidth] = useState<number>(21);
+  const [latticeHeight, setLatticeHeight] = useState<number>(21);
   const [delay, setDelay] = useState<number>(100);
   const [currentLattice, setCurrentLattice] = useState<boolean[][] | null>(
     null

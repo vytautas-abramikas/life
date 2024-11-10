@@ -1,4 +1,3 @@
-export type TCell = {
-  isAlive: boolean;
-  isClickable: boolean;
-};
+export type TAppState = "initial" | "simulation";
+
+export type TLatticeType = "finite" | "toroidal";

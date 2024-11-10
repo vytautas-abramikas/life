@@ -1,13 +1,11 @@
-import { TCell } from "../types/types";
-
 export const getNextGeneration = (
-  cells: TCell[][],
+  lattice: boolean[][],
   edges: "toroidal" | "finite"
-): TCell[][] => {
-  const height = cells.length;
-  const width = cells[0].length;
-  const newCells: TCell[][] = Array.from({ length: height }, () =>
-    Array.from({ length: width }, () => ({ isAlive: false, isClickable: true }))
+): boolean[][] => {
+  const height = lattice.length;
+  const width = lattice[0].length;
+  const newLattice: boolean[][] = Array.from({ length: height }, () =>
+    Array.from({ length: width }, () => false)
   );
 
   for (let y = 0; y < height; y++) {
@@ -40,16 +38,16 @@ export const getNextGeneration = (
           }
         }
 
-        liveNeighbors += cells[newY][newX].isAlive ? 1 : 0;
+        liveNeighbors += lattice[newY][newX] ? 1 : 0;
       });
 
-      if (cells[y][x].isAlive) {
-        newCells[y][x].isAlive = liveNeighbors === 2 || liveNeighbors === 3;
+      if (lattice[y][x]) {
+        newLattice[y][x] = liveNeighbors === 2 || liveNeighbors === 3;
       } else {
-        newCells[y][x].isAlive = liveNeighbors === 3;
+        newLattice[y][x] = liveNeighbors === 3;
       }
     }
   }
 
-  return newCells;
+  return newLattice;
 };

@@ -1,12 +1,14 @@
-import { TCell } from "../types/types";
+import { getCellColor } from "../lib/getCellColor";
+import { TLatticeType } from "../types/types";
 
 export const Lattice: React.FC<{
-  width: number;
-  height: number;
-  cells: TCell[][];
-}> = ({ width, height, cells }) => {
-  const cellSizeWidth = window.innerWidth / width;
-  const cellSizeHeight = (window.innerHeight * 0.9) / height;
+  latticeWidth: number;
+  latticeHeight: number;
+  currentLattice: boolean[][];
+  latticeType: TLatticeType;
+}> = ({ latticeWidth, latticeHeight, currentLattice, latticeType }) => {
+  const cellSizeWidth = window.innerWidth / latticeWidth;
+  const cellSizeHeight = (window.innerHeight * 0.9) / latticeHeight;
   const cellSizeRem = Math.min(cellSizeWidth, cellSizeHeight) / 17;
 
   return (
@@ -14,17 +16,20 @@ export const Lattice: React.FC<{
       <div
         className="grid max-w-full max-h-full w-auto h-auto"
         style={{
-          gridTemplateColumns: `repeat(${width}, ${cellSizeRem}rem)`,
-          gridTemplateRows: `repeat(${height}, ${cellSizeRem}rem)`,
+          gridTemplateColumns: `repeat(${latticeWidth}, ${cellSizeRem}rem)`,
+          gridTemplateRows: `repeat(${latticeHeight}, ${cellSizeRem}rem)`,
         }}
       >
-        {cells.map((row, rowIndex) =>
-          row.map((cell, cellIndex) => (
+        {currentLattice.map((row, yIndex) =>
+          row.map((_, xIndex) => (
             <div
-              key={`${rowIndex}-${cellIndex}`}
-              className={`border border-gray-800 aspect-square ${
-                cell.isAlive ? "bg-green-500" : "bg-black"
-              } ${cell.isClickable ? "cursor-pointer" : ""}`}
+              key={`${yIndex}-${xIndex}`}
+              className={`border border-gray-800 aspect-square ${getCellColor(
+                yIndex,
+                xIndex,
+                currentLattice,
+                latticeType
+              )}`}
             ></div>
           ))
         )}

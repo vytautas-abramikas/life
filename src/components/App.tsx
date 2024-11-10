@@ -11,7 +11,7 @@ export const App: React.FC = () => {
   const [latticeType, setLatticeType] = useState<TLatticeType>("toroidal");
   const [latticeWidth, setLatticeWidth] = useState<number>(100);
   const [latticeHeight, setLatticeHeight] = useState<number>(50);
-  const [delay, setDelay] = useState<number>(0);
+  const [delay, setDelay] = useState<number>(300);
   const [currentLattice, setCurrentLattice] = useState<boolean[][] | null>(
     null
   );

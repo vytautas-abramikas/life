@@ -1,6 +1,8 @@
+import { TLatticeType } from "../types/types";
+
 export const getNextGeneration = (
   lattice: boolean[][],
-  edges: "toroidal" | "finite"
+  edges: TLatticeType
 ): boolean[][] => {
   const height = lattice.length;
   const width = lattice[0].length;
@@ -31,7 +33,7 @@ export const getNextGeneration = (
           // Wrap around for toroidal edges
           newY = (newY + height) % height;
           newX = (newX + width) % width;
-        } else if (edges === "finite") {
+        } else if (edges === "bounded") {
           // Skip out-of-bounds for finite edges
           if (newY < 0 || newY >= height || newX < 0 || newX >= width) {
             return;

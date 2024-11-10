@@ -33,7 +33,7 @@ export const getCellColor = (
       // Wrap around for toroidal edges
       newY = (newY + height) % height;
       newX = (newX + width) % width;
-    } else if (latticeType === "finite") {
+    } else if (latticeType === "bounded") {
       // Skip out-of-bounds for finite edges
       if (newY < 0 || newY >= height || newX < 0 || newX >= width) {
         return;

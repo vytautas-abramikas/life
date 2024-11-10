@@ -3,15 +3,17 @@ import { Header } from "./Header";
 import { Lattice } from "./Lattice";
 import { TAppState, TLatticeType } from "../types/types";
 import { getNextGeneration } from "../lib/getNextGeneration";
+import { getPopulation } from "../lib/getPopulation";
 
 export const App: React.FC = () => {
   const [appState, setAppState] = useState<TAppState>("initial");
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [generation, setGeneration] = useState<number>(0);
+  const [population, setPopulation] = useState<number>(0);
   const [latticeType, setLatticeType] = useState<TLatticeType>("toroidal");
   const [latticeWidth, setLatticeWidth] = useState<number>(100);
   const [latticeHeight, setLatticeHeight] = useState<number>(50);
-  const [delay, setDelay] = useState<number>(300);
+  const [delay, setDelay] = useState<number>(100);
   const [currentLattice, setCurrentLattice] = useState<boolean[][] | null>(
     null
   );
@@ -22,7 +24,7 @@ export const App: React.FC = () => {
       () => Array.from({ length: latticeWidth }, () => Math.random() > 0.9)
     );
     setCurrentLattice(initialLattice);
-
+    setPopulation(getPopulation(initialLattice));
     setTimeout(() => {
       setIsRunning(true);
     }, delay * 5);
@@ -33,6 +35,7 @@ export const App: React.FC = () => {
       const nextLattice = getNextGeneration(currentLattice, latticeType);
       setTimeout(() => {
         setCurrentLattice(nextLattice);
+        setPopulation(getPopulation(nextLattice));
         setGeneration((prev) => prev + 1);
       }, delay);
     }

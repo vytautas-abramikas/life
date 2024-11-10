@@ -1,3 +1,3 @@
 export type TAppState = "initial" | "simulation";
 
-export type TLatticeType = "finite" | "toroidal";
+export type TLatticeType = "toroidal" | "bounded";

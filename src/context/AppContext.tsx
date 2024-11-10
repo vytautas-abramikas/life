@@ -1,12 +1,11 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
-import { TAppState, TLatticeType, TAppContextProps } from "../types/types";
+import { TLatticeType, TAppContextProps } from "../types/types";
 import { getNextGeneration } from "../lib/getNextGeneration";
 import { getPopulation } from "../lib/getPopulation";
 
 const AppContext = createContext<TAppContextProps | null>(null);
 
 const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [appState, setAppState] = useState<TAppState>("initial");
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [generation, setGeneration] = useState<number>(0);
   const [population, setPopulation] = useState<number>(0);
@@ -40,7 +39,6 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        appState,
         isRunning,
         generation,
         population,
@@ -49,7 +47,6 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         latticeHeight,
         delay,
         currentLattice,
-        setAppState,
         setIsRunning,
         setGeneration,
         setPopulation,

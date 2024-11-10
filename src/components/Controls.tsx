@@ -44,7 +44,7 @@ export const Controls: React.FC = () => {
     setIsRunning(true);
   };
 
-  const clearLattice = () => {
+  const handleClearLattice = () => {
     const emptyLattice: boolean[][] = Array.from(
       { length: latticeHeight },
       () => Array.from({ length: latticeWidth }, () => false)
@@ -52,7 +52,7 @@ export const Controls: React.FC = () => {
     setCurrentLattice(emptyLattice);
   };
 
-  const randomizeLattice = () => {
+  const handleRandomizeLattice = () => {
     const randomLattice: boolean[][] = Array.from(
       { length: latticeHeight },
       () => Array.from({ length: latticeWidth }, () => Math.random() > 0.9)
@@ -136,7 +136,7 @@ export const Controls: React.FC = () => {
       )}
       {generation === 0 && currentLattice && (
         <button
-          onClick={clearLattice}
+          onClick={handleClearLattice}
           className="rounded p-1 ml-1"
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
@@ -145,7 +145,7 @@ export const Controls: React.FC = () => {
       )}
       {generation === 0 && currentLattice && (
         <button
-          onClick={randomizeLattice}
+          onClick={handleRandomizeLattice}
           className="rounded p-1 ml-1"
           style={{ fontSize: "min(4vh, 4vw)" }}
         >

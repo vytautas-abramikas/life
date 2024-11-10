@@ -1,12 +1,12 @@
+import { useAppContext } from "../hooks/useAppContext";
 import { getCellColor } from "../lib/getCellColor";
-import { TLatticeType } from "../types/types";
 
-export const Lattice: React.FC<{
-  latticeWidth: number;
-  latticeHeight: number;
-  currentLattice: boolean[][];
-  latticeType: TLatticeType;
-}> = ({ latticeWidth, latticeHeight, currentLattice, latticeType }) => {
+export const Lattice: React.FC = () => {
+  const { latticeWidth, latticeHeight, latticeType, currentLattice } =
+    useAppContext();
+
+  if (!currentLattice) return null;
+
   const cellSizeWidth = window.innerWidth / latticeWidth;
   const cellSizeHeight = (window.innerHeight * 0.9) / latticeHeight;
   const cellSizeRem = Math.min(cellSizeWidth, cellSizeHeight) / 17;

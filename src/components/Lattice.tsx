@@ -3,6 +3,7 @@ import { getCellColor } from "../lib/getCellColor";
 
 export const Lattice: React.FC = () => {
   const {
+    isRunning,
     latticeWidth,
     latticeHeight,
     latticeType,
@@ -28,7 +29,11 @@ export const Lattice: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-[90vh]">
+    <div
+      className={`flex justify-center items-center h-[90vh] ${
+        isRunning ? "pointer-events-none" : ""
+      }`}
+    >
       <div
         className="grid max-w-full max-h-full w-auto h-auto"
         style={{
@@ -40,12 +45,9 @@ export const Lattice: React.FC = () => {
           row.map((_, xIndex) => (
             <div
               key={`${yIndex}-${xIndex}`}
-              className={`border border-gray-800 aspect-square ${getCellColor(
-                yIndex,
-                xIndex,
-                currentLattice,
-                latticeType
-              )}`}
+              className={`border border-gray-800 aspect-square ${
+                !isRunning ? "cursor-pointer" : ""
+              } ${getCellColor(yIndex, xIndex, currentLattice, latticeType)}`}
               onClick={() => toggleCell(yIndex, xIndex)}
             ></div>
           ))

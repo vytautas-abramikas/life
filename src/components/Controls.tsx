@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useAppContext } from "../hooks/useAppContext";
+import { saveShapeToFile } from "../lib/saveShapeToFile";
+import { TShape } from "../types/types";
 
 export const Controls: React.FC = () => {
   const {
@@ -25,6 +27,7 @@ export const Controls: React.FC = () => {
 
   const [localWidth, setLocalWidth] = useState(latticeWidth);
   const [localHeight, setLocalHeight] = useState(latticeHeight);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleSetLocalWidth = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = Number(e.target.value);
@@ -89,6 +92,58 @@ export const Controls: React.FC = () => {
       () => Array.from({ length: latticeWidth }, () => Math.random() > 0.9)
     );
     setCurrentLattice(randomLattice);
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target?.result) {
+          try {
+            const shape = JSON.parse(e.target.result as string) as TShape;
+            if (
+              typeof shape.width === "number" &&
+              typeof shape.height === "number" &&
+              Array.isArray(shape.lattice) &&
+              shape.lattice.every(
+                (row) =>
+                  Array.isArray(row) &&
+                  row.every((cell) => typeof cell === "number")
+              )
+            ) {
+              loadShapeIntoLattice(shape);
+            } else {
+              alert("Invalid file format. Please provide a valid shape file.");
+            }
+          } catch (error) {
+            alert("Error parsing file. Please provide a valid JSON file.");
+          }
+        }
+      };
+      reader.readAsText(file);
+    }
+  };
+
+  const loadShapeIntoLattice = (shape: TShape) => {
+    if (shape.width > latticeWidth || shape.height > latticeHeight) {
+      alert("Shape does not fit into the current lattice.");
+      return;
+    }
+    const booleanLattice = shape.lattice.map((row) =>
+      row.map((cell) => cell === 1)
+    );
+    const newLattice: boolean[][] = Array.from({ length: latticeHeight }, () =>
+      Array.from({ length: latticeWidth }, () => false)
+    );
+    const startX = Math.floor((latticeWidth - shape.width) / 2);
+    const startY = Math.floor((latticeHeight - shape.height) / 2);
+    for (let y = 0; y < shape.height; y++) {
+      for (let x = 0; x < shape.width; x++) {
+        newLattice[startY + y][startX + x] = booleanLattice[y][x];
+      }
+    }
+    setCurrentLattice(newLattice);
   };
 
   return (
@@ -206,6 +261,32 @@ export const Controls: React.FC = () => {
         >
           🏁
         </button>
+      )}
+      {currentLattice && !isRunning && (
+        <button
+          onClick={() => saveShapeToFile(currentLattice)}
+          className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
+          style={{ fontSize: "min(4vh, 4vw)" }}
+        >
+          💾
+        </button>
+      )}
+      {currentLattice && !isRunning && (
+        <>
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            style={{ display: "none" }}
+          />
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
+            style={{ fontSize: "min(4vh, 4vw)" }}
+          >
+            📂
+          </button>
+        </>
       )}
     </div>
   );

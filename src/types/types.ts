@@ -27,3 +27,9 @@ export type TAppContextProps = {
 };
 
 export type TColorScheme = "ordinary" | "rgb" | "grayscale" | "rainbow";
+
+export type TShape = {
+  width: number;
+  height: number;
+  lattice: number[][];
+};

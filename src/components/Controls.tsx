@@ -122,7 +122,7 @@ export const Controls: React.FC = () => {
           setLatticeType(e.target.value as "toroidal" | "bounded")
         }
         disabled={isRunning}
-        className="text-black w-[10%] p-2 ml-2 mr-4 rounded-md disabled:bg-gray-500"
+        className="text-black w-[10%] p-2 ml-2 mr-4 rounded-md disabled:bg-gray-400"
       >
         <option value="toroidal">Toroidal</option>
         <option value="bounded">Bounded</option>
@@ -130,7 +130,7 @@ export const Controls: React.FC = () => {
       {!isRunning && currentLattice && (
         <button
           onClick={handleStartRunning}
-          className="rounded ml-1"
+          className="rounded ml-1 hover:scale-110 transition duration-300"
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
           ▶️
@@ -139,7 +139,7 @@ export const Controls: React.FC = () => {
       {isRunning && (
         <button
           onClick={() => setIsRunning(false)}
-          className="rounded ml-1"
+          className="rounded ml-1 hover:scale-110 transition duration-300"
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
           ⏸️
@@ -148,7 +148,7 @@ export const Controls: React.FC = () => {
       {generation > 0 && !isRunning && (
         <button
           onClick={handleJumpToStart}
-          className="rounded ml-1"
+          className="rounded ml-1 hover:scale-110 transition duration-300"
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
           ⏪
@@ -157,7 +157,7 @@ export const Controls: React.FC = () => {
       {generation === 0 && (
         <button
           onClick={handleCreateLattice}
-          className="rounded p-1 ml-1"
+          className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
           ⚒️
@@ -166,7 +166,7 @@ export const Controls: React.FC = () => {
       {generation === 0 && currentLattice && (
         <button
           onClick={handleClearLattice}
-          className="rounded p-1 ml-1"
+          className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
           🧹
@@ -175,7 +175,7 @@ export const Controls: React.FC = () => {
       {generation === 0 && currentLattice && (
         <button
           onClick={handleRandomizeLattice}
-          className="rounded p-1 ml-1"
+          className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
           🎲
@@ -184,7 +184,7 @@ export const Controls: React.FC = () => {
       {currentLattice && (
         <button
           onClick={() => setIsShowBorder((prev) => !prev)}
-          className="rounded p-1 ml-1"
+          className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
           🏁

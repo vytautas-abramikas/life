@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useAppContext } from "../hooks/useAppContext";
 import { getCellColor } from "../lib/getCellColor";
 
@@ -12,11 +13,18 @@ export const Lattice: React.FC = () => {
     setCurrentLattice,
   } = useAppContext();
 
-  if (!currentLattice) return null;
+  const [cellSizeRem, setCellSizeRem] = useState(0);
 
-  const cellSizeWidth = window.innerWidth / latticeWidth;
-  const cellSizeHeight = (window.innerHeight * 0.9) / latticeHeight;
-  const cellSizeRem = Math.min(cellSizeWidth, cellSizeHeight) / 17;
+  useEffect(() => {
+    const calculateCellSize = () => {
+      const cellSizeWidth = window.innerWidth / latticeWidth;
+      const cellSizeHeight = (window.innerHeight * 0.9) / latticeHeight;
+      setCellSizeRem(Math.min(cellSizeWidth, cellSizeHeight) / 17);
+    };
+    calculateCellSize();
+    window.addEventListener("resize", calculateCellSize);
+    return () => window.removeEventListener("resize", calculateCellSize);
+  }, [latticeWidth, latticeHeight]);
 
   const toggleCell = (y: number, x: number) => {
     setCurrentLattice((prev) => {
@@ -28,6 +36,8 @@ export const Lattice: React.FC = () => {
       return prev;
     });
   };
+
+  if (!currentLattice) return null;
 
   return (
     <div

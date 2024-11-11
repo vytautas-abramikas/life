@@ -6,6 +6,7 @@ import { getPopulation } from "../lib/getPopulation";
 const AppContext = createContext<TAppContextProps | null>(null);
 
 const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [isShowBorder, setIsShowBorder] = useState<boolean>(true);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [generation, setGeneration] = useState<number>(0);
   const [population, setPopulation] = useState<number>(0);
@@ -39,6 +40,7 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        isShowBorder,
         isRunning,
         generation,
         population,
@@ -47,6 +49,7 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         latticeHeight,
         delay,
         currentLattice,
+        setIsShowBorder,
         setIsRunning,
         setGeneration,
         setPopulation,

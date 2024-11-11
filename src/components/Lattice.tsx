@@ -3,6 +3,7 @@ import { getCellColor } from "../lib/getCellColor";
 
 export const Lattice: React.FC = () => {
   const {
+    isShowBorder,
     isRunning,
     latticeWidth,
     latticeHeight,
@@ -45,9 +46,14 @@ export const Lattice: React.FC = () => {
           row.map((_, xIndex) => (
             <div
               key={`${yIndex}-${xIndex}`}
-              className={`border border-gray-800 aspect-square ${
-                !isRunning ? "cursor-pointer" : ""
-              } ${getCellColor(yIndex, xIndex, currentLattice, latticeType)}`}
+              className={`aspect-square border ${
+                isShowBorder ? "border-gray-800" : "border-black"
+              } ${!isRunning ? "cursor-pointer" : ""} ${getCellColor(
+                yIndex,
+                xIndex,
+                currentLattice,
+                latticeType
+              )}`}
               onClick={() => toggleCell(yIndex, xIndex)}
             ></div>
           ))

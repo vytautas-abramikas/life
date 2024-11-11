@@ -1,6 +1,7 @@
 export type TLatticeType = "toroidal" | "bounded";
 
 export type TAppContextProps = {
+  isShowBorder: boolean;
   isRunning: boolean;
   generation: number;
   population: number;
@@ -9,6 +10,7 @@ export type TAppContextProps = {
   latticeHeight: number;
   delay: number;
   currentLattice: boolean[][] | null;
+  setIsShowBorder: React.Dispatch<React.SetStateAction<boolean>>;
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>;
   setGeneration: React.Dispatch<React.SetStateAction<number>>;
   setPopulation: React.Dispatch<React.SetStateAction<number>>;

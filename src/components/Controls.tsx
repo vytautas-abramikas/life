@@ -18,6 +18,7 @@ export const Controls: React.FC = () => {
     setLatticeHeight,
     setGeneration,
     setLatticeType,
+    setIsShowBorder,
   } = useAppContext();
 
   const [localWidth, setLocalWidth] = useState(latticeWidth);
@@ -178,6 +179,15 @@ export const Controls: React.FC = () => {
           style={{ fontSize: "min(4vh, 4vw)" }}
         >
           🎲
+        </button>
+      )}
+      {currentLattice && (
+        <button
+          onClick={() => setIsShowBorder((prev) => !prev)}
+          className="rounded p-1 ml-1"
+          style={{ fontSize: "min(4vh, 4vw)" }}
+        >
+          🏁
         </button>
       )}
     </div>

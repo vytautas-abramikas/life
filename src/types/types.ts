@@ -1,6 +1,7 @@
 export type TLatticeType = "toroidal" | "bounded";
 
 export type TAppContextProps = {
+  colorScheme: TColorScheme;
   isShowBorder: boolean;
   isRunning: boolean;
   generation: number;
@@ -10,6 +11,7 @@ export type TAppContextProps = {
   latticeHeight: number;
   delay: number;
   currentLattice: boolean[][] | null;
+  setColorScheme: React.Dispatch<React.SetStateAction<TColorScheme>>;
   setIsShowBorder: React.Dispatch<React.SetStateAction<boolean>>;
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>;
   setGeneration: React.Dispatch<React.SetStateAction<number>>;
@@ -23,3 +25,5 @@ export type TAppContextProps = {
     React.SetStateAction<boolean[][] | null>
   >;
 };
+
+export type TColorScheme = "ordinary" | "rgb" | "grayscale" | "rainbow";

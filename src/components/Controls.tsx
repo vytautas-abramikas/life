@@ -3,6 +3,7 @@ import { useAppContext } from "../hooks/useAppContext";
 
 export const Controls: React.FC = () => {
   const {
+    colorScheme,
     currentLattice,
     latticeWidth,
     latticeHeight,
@@ -10,6 +11,7 @@ export const Controls: React.FC = () => {
     isRunning,
     generation,
     latticeType,
+    setColorScheme,
     setCurrentLattice,
     setSavedStartingLattice,
     setDelay,
@@ -97,7 +99,7 @@ export const Controls: React.FC = () => {
         value={localWidth}
         onChange={handleSetLocalWidth}
         disabled={isRunning || generation !== 0}
-        className="text-black w-[5%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
+        className="text-black w-[6%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
       />
       <label className="">Height:</label>
       <input
@@ -105,7 +107,7 @@ export const Controls: React.FC = () => {
         value={localHeight}
         onChange={handleSetLocalHeight}
         disabled={isRunning || generation !== 0}
-        className="text-black w-[5%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
+        className="text-black w-[6%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
       />
       <label className="">Delay:</label>
       <input
@@ -113,7 +115,7 @@ export const Controls: React.FC = () => {
         value={delay === 0 ? "" : delay}
         onChange={handleSetDelay}
         disabled={isRunning}
-        className="text-black w-[5%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
+        className="text-black w-[6%] p-1 ml-2 mr-4 rounded-md disabled:bg-gray-500"
       />
       <label className="">Type:</label>
       <select
@@ -126,6 +128,21 @@ export const Controls: React.FC = () => {
       >
         <option value="toroidal">Toroidal</option>
         <option value="bounded">Bounded</option>
+      </select>
+      <label className="">Colors:</label>
+      <select
+        value={colorScheme}
+        onChange={(e) =>
+          setColorScheme(
+            e.target.value as "ordinary" | "rgb" | "grayscale" | "rainbow"
+          )
+        }
+        className="text-black w-[10%] p-2 ml-2 mr-4 rounded-md disabled:bg-gray-400"
+      >
+        <option value="ordinary">Ordinary</option>
+        <option value="rgb">RGB</option>
+        <option value="grayscale">Grayscale</option>
+        <option value="rainbow">Rainbow</option>
       </select>
       {!isRunning && currentLattice && (
         <button

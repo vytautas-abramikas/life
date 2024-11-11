@@ -19,8 +19,8 @@ export const saveShapeToFile = (lattice: boolean[][]) => {
     });
   });
 
-  const trimmedHeight = maxY - minY + 1;
-  const trimmedWidth = maxX - minX + 1;
+  const trimmedHeight = Math.max(maxY - minY + 1, 0);
+  const trimmedWidth = Math.max(maxX - minX + 1, 0);
   const trimmedLattice: number[][] = [];
 
   // Create trimmed lattice

@@ -118,6 +118,10 @@ export const Controls: React.FC = () => {
             }
           } catch (error) {
             alert("Error parsing file. Please provide a valid JSON file.");
+          } finally {
+            if (fileInputRef.current) {
+              fileInputRef.current.value = "";
+            }
           }
         }
       };
@@ -127,7 +131,9 @@ export const Controls: React.FC = () => {
 
   const loadShapeIntoLattice = (shape: TShape) => {
     if (shape.width > latticeWidth || shape.height > latticeHeight) {
-      alert("Shape does not fit into the current lattice.");
+      alert(
+        `Shape does not fit into the current lattice. The shape requires lattice width of ${shape.width} and height of ${shape.height}.`
+      );
       return;
     }
     const booleanLattice = shape.lattice.map((row) =>

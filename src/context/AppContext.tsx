@@ -21,6 +21,10 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [savedStartingLattice, setSavedStartingLattice] = useState<
     boolean[][] | null
   >(null);
+  const [isLatticeSizeControlsVisible, setIsLatticeSizeControlsVisible] =
+    useState(false);
+  const [isLatticeSettingsVisible, setIsLatticeSettingsVisible] =
+    useState(false);
 
   useEffect(() => {
     if (generation === 0) {
@@ -51,6 +55,8 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         latticeHeight,
         delay,
         currentLattice,
+        isLatticeSizeControlsVisible,
+        isLatticeSettingsVisible,
         setColorScheme,
         setIsShowBorder,
         setIsRunning,
@@ -62,6 +68,8 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setDelay,
         setCurrentLattice,
         setSavedStartingLattice,
+        setIsLatticeSizeControlsVisible,
+        setIsLatticeSettingsVisible,
       }}
     >
       {children}

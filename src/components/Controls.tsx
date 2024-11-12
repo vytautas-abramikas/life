@@ -2,6 +2,7 @@ import { useAppContext } from "../hooks/useAppContext";
 import { LatticeSizeControls } from "./LatticeSizeControls";
 import { LatticeSettings } from "./LatticeSettings";
 import { ShapeManager } from "./ShapeManager";
+import { useEffect } from "react";
 
 export const Controls: React.FC = () => {
   const {
@@ -22,6 +23,12 @@ export const Controls: React.FC = () => {
     setIsLatticeSettingsVisible,
     setIsShapeManagerVisible,
   } = useAppContext();
+
+  useEffect(() => {
+    if (!currentLattice) {
+      setIsLatticeSizeControlsVisible(true);
+    }
+  }, []);
 
   const handleJumpToStart = () => {
     setIsRunning(false);

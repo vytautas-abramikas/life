@@ -5,3 +5,8 @@
 html {
   font-size: min(1.7vw, 1.7vh);
 }
+
+.option-disabled {
+  color: black;
+  background-color: #d1d5db;
+}

@@ -1,5 +1,5 @@
 import { saveAs } from "file-saver";
-import { TShape } from "../types/types";
+import { TJSONShape } from "../types/types";
 
 export const saveShapeToFile = (lattice: boolean[][]) => {
   let minY = lattice.length;
@@ -32,7 +32,7 @@ export const saveShapeToFile = (lattice: boolean[][]) => {
     trimmedLattice.push(row);
   }
 
-  const shape: TShape = {
+  const shape: TJSONShape = {
     width: trimmedWidth,
     height: trimmedHeight,
     lattice: trimmedLattice,

@@ -1,7 +1,8 @@
-import { useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useAppContext } from "../hooks/useAppContext";
 import { saveShapeToFile } from "../lib/saveShapeToFile";
-import { TShape } from "../types/types";
+import { loadPredefinedShapes } from "../lib/loadPredefinedShapes";
+import { TJSONShape, TShape } from "../types/types";
 
 export const ShapeManager: React.FC = () => {
   const {
@@ -12,7 +13,17 @@ export const ShapeManager: React.FC = () => {
     setIsShapeManagerVisible,
   } = useAppContext();
 
+  const [predefinedShapes, setPredefinedShapes] = useState<TShape[]>([]);
+  const [selectedPredefinedShape, setSelectedPredefinedShape] =
+    useState<TShape | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const loadedShapes = await loadPredefinedShapes();
+      setPredefinedShapes(loadedShapes);
+    })();
+  }, []);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -21,7 +32,7 @@ export const ShapeManager: React.FC = () => {
       reader.onload = (e) => {
         if (e.target?.result) {
           try {
-            const shape = JSON.parse(e.target.result as string) as TShape;
+            const shape = JSON.parse(e.target.result as string) as TJSONShape;
             if (
               typeof shape.width === "number" &&
               typeof shape.height === "number" &&
@@ -49,7 +60,7 @@ export const ShapeManager: React.FC = () => {
     }
   };
 
-  const loadShapeIntoLattice = (shape: TShape) => {
+  const loadShapeIntoLattice = (shape: TJSONShape) => {
     if (shape.width > latticeWidth || shape.height > latticeHeight) {
       alert(
         `The shape does not fit into the current lattice. The shape requires lattice width of ${shape.width} and height of ${shape.height}.`
@@ -70,6 +81,12 @@ export const ShapeManager: React.FC = () => {
       }
     }
     setCurrentLattice(newLattice);
+  };
+
+  const handleLoadPredefinedShape = () => {
+    if (selectedPredefinedShape) {
+      loadShapeIntoLattice(selectedPredefinedShape);
+    }
   };
 
   const handleClose = () => {
@@ -108,11 +125,38 @@ export const ShapeManager: React.FC = () => {
           )}
         </div>
         <div className="flex justify-center items-center space-x-4 mb-4">
-          <select className="text-black p-2 rounded-md">
-            <option value="">Select a predefined shape to load</option>
-            {/* Add more options as needed */}
+          <select
+            className="text-black p-2 rounded-md"
+            onChange={(e) => {
+              const selected = predefinedShapes.find(
+                (shape) => shape.name === e.target.value
+              );
+              setSelectedPredefinedShape(selected || null);
+            }}
+          >
+            <option value="">Select a shape</option>{" "}
+            {predefinedShapes.map((shape) => (
+              <option
+                key={shape.name}
+                value={shape.name}
+                disabled={
+                  shape.width > latticeWidth || shape.height > latticeHeight
+                }
+                className={
+                  shape.width > latticeWidth || shape.height > latticeHeight
+                    ? "option-disabled"
+                    : ""
+                }
+              >
+                {shape.name}
+              </option>
+            ))}
           </select>
-          <button className="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600">
+          <button
+            onClick={handleLoadPredefinedShape}
+            disabled={!selectedPredefinedShape}
+            className="bg-blue-500 disabled:bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+          >
             Load
           </button>
         </div>

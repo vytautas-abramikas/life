@@ -25,6 +25,7 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     useState(false);
   const [isLatticeSettingsVisible, setIsLatticeSettingsVisible] =
     useState(false);
+  const [isShapeManagerVisible, setIsShapeManagerVisible] = useState(false);
 
   useEffect(() => {
     if (currentLattice) {
@@ -62,6 +63,7 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         currentLattice,
         isLatticeSizeControlsVisible,
         isLatticeSettingsVisible,
+        isShapeManagerVisible,
         setColorScheme,
         setIsShowBorder,
         setIsRunning,
@@ -75,6 +77,7 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setSavedStartingLattice,
         setIsLatticeSizeControlsVisible,
         setIsLatticeSettingsVisible,
+        setIsShapeManagerVisible,
       }}
     >
       {children}

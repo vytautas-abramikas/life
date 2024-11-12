@@ -134,7 +134,7 @@ export const ShapeManager: React.FC = () => {
               setSelectedPredefinedShape(selected || null);
             }}
           >
-            <option value="">Select a shape</option>{" "}
+            <option value="">Select a predefined shape</option>{" "}
             {predefinedShapes.map((shape) => (
               <option
                 key={shape.name}

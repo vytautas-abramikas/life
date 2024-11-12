@@ -1,1 +1,0 @@
-const i=14,h=4,t=[[1,1,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,0,0,0,0,0,1,1,1,0,0,0,1],[0,0,1,1,0,0,1,1,1,0,0,0,0,1],[0,0,1,1,0,0,0,0,0,0,0,0,0,0]],e={width:14,height:4,lattice:t};export{e as default,h as height,t as lattice,i as width};

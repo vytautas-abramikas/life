@@ -27,6 +27,12 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     useState(false);
 
   useEffect(() => {
+    if (currentLattice) {
+      setPopulation(getPopulation(currentLattice));
+    }
+  }, [currentLattice]);
+
+  useEffect(() => {
     if (generation === 0) {
       if (savedStartingLattice) {
         setCurrentLattice(savedStartingLattice);
@@ -36,7 +42,6 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       const nextLattice = getNextGeneration(currentLattice, latticeType);
       setTimeout(() => {
         setCurrentLattice(nextLattice);
-        setPopulation(getPopulation(nextLattice));
         setGeneration((prev) => prev + 1);
       }, delay);
     }

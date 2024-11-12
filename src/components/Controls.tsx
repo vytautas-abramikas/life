@@ -91,7 +91,7 @@ export const Controls: React.FC = () => {
   const loadShapeIntoLattice = (shape: TShape) => {
     if (shape.width > latticeWidth || shape.height > latticeHeight) {
       alert(
-        `Shape does not fit into the current lattice. The shape requires lattice width of ${shape.width} and height of ${shape.height}.`
+        `The shape does not fit into the current lattice. The shape requires lattice width of ${shape.width} and height of ${shape.height}.`
       );
       return;
     }

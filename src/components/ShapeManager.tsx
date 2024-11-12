@@ -87,6 +87,7 @@ export const ShapeManager: React.FC = () => {
     if (selectedPredefinedShape) {
       loadShapeIntoLattice(selectedPredefinedShape);
     }
+    setIsShapeManagerVisible(false);
   };
 
   const handleClose = () => {

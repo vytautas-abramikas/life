@@ -1,15 +1,18 @@
 import { TShape } from "../types/types";
 
 export const loadPredefinedShapes = async (): Promise<TShape[]> => {
-  const files = import.meta.glob("../shapes/*.json");
-  const shapes: TShape[] = [];
-
-  for (const path in files) {
-    const module = (await files[path]()) as {
+  const files = import.meta.glob("../shapes/*.json", { eager: true }) as Record<
+    string,
+    {
       width: number;
       height: number;
       lattice: number[][];
-    };
+    }
+  >;
+  const shapes: TShape[] = [];
+
+  for (const path in files) {
+    const module = files[path];
     const name = path
       .replace("../shapes/", "")
       .replace(".json", "")

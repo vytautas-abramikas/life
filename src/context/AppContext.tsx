@@ -6,7 +6,7 @@ import { getPopulation } from "../lib/getPopulation";
 const AppContext = createContext<TAppContextProps | null>(null);
 
 const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [colorScheme, setColorScheme] = useState<TColorScheme>("rgb");
+  const [colorScheme, setColorScheme] = useState<TColorScheme>("rainbow");
   const [isShowBorder, setIsShowBorder] = useState<boolean>(true);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [generation, setGeneration] = useState<number>(0);

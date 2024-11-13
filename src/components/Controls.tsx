@@ -115,7 +115,7 @@ export const Controls: React.FC = () => {
             className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
             style={{ fontSize: "min(4vh, 4vw)" }}
           >
-            📃
+            📚
           </button>
         )}
         {!isRunning && currentLattice && (

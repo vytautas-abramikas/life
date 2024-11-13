@@ -71,16 +71,16 @@ export const LatticeSizeControls: React.FC = () => {
 
         <div className="flex justify-between mt-6">
           <button
-            onClick={handleCreateLattice}
-            className="bg-blue-500 text-white py-2 px-2 rounded-md hover:bg-blue-600"
-          >
-            Create
-          </button>
-          <button
             onClick={handleCancel}
             className="bg-red-500 text-white py-2 px-2 rounded-md hover:bg-red-600"
           >
             Cancel
+          </button>
+          <button
+            onClick={handleCreateLattice}
+            className="bg-blue-500 text-white py-2 px-2 rounded-md hover:bg-blue-600"
+          >
+            Create
           </button>
         </div>
       </div>

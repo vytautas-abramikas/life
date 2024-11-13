@@ -20,7 +20,7 @@ export const Lattice: React.FC = () => {
     const calculateCellSize = () => {
       const cellSizeWidth = window.innerWidth / latticeWidth;
       const cellSizeHeight = (window.innerHeight * 0.9) / latticeHeight;
-      setCellSizeRem(Math.min(cellSizeWidth, cellSizeHeight) / 17);
+      setCellSizeRem(Math.min(cellSizeWidth, cellSizeHeight) / 18);
     };
     calculateCellSize();
     window.addEventListener("resize", calculateCellSize);

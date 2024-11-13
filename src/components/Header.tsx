@@ -1,3 +1,4 @@
+import { FullScreenButton } from "./FullScreenButton";
 import { Counter } from "./Counter";
 import { Controls } from "./Controls";
 
@@ -7,6 +8,9 @@ export const Header: React.FC = () => {
       className="w-full min-h-[10vh] bg-black grid grid-cols-5"
       style={{ fontSize: "min(1.8vh, 1.8vw)" }}
     >
+      <div className="col-start-1 col-span-1">
+        <FullScreenButton />
+      </div>
       <div className="col-start-2 col-span-1">
         <Counter />
       </div>

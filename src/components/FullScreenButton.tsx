@@ -19,16 +19,17 @@ const toggleFullscreen = () => {
 
 export const FullScreenButton: React.FC = React.memo(() => {
   return (
-    <button
-      className="fixed top-0 left-0 flex items-center justify-center hover:scale-110 hover:opacity-50 transition duration-500 ease-out bg-black opacity-25 rounded-xl text-4xl text-white h-16 w-16"
-      style={{
-        fontSize: "min(4vh, 4vw)",
-        marginTop: "0.2em",
-        marginLeft: "0.2em",
-      }}
-      onClick={toggleFullscreen}
-    >
-      🔳
-    </button>
+    <div className="flex flex-col items-start justify-start w-[100%] h-full">
+      <button
+        className="flex items-center justify-start hover:scale-110 hover:opacity-50 transition duration-500 ease-out bg-black opacity-25 rounded-xl text-4xl text-white p-2"
+        style={{
+          fontSize: "min(4vh, 4vw)",
+          margin: "0.4em",
+        }}
+        onClick={toggleFullscreen}
+      >
+        🔳
+      </button>
+    </div>
   );
 });

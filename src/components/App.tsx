@@ -1,7 +1,6 @@
 import { AppProvider } from "../context/AppContext";
 import { Header } from "./Header";
 import { Lattice } from "./Lattice";
-import { FullScreenButton } from "./FullScreenButton";
 
 export const App: React.FC = () => {
   return (
@@ -12,7 +11,6 @@ export const App: React.FC = () => {
           <Lattice />
         </div>
       </div>
-      <FullScreenButton />
     </AppProvider>
   );
 };

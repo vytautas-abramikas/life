@@ -23,12 +23,13 @@ export const FullScreenButton: React.FC = React.memo(() => {
       <button
         className="flex items-center justify-start hover:scale-110 hover:opacity-50 transition duration-500 ease-out bg-black opacity-25 rounded-xl text-4xl text-white p-2"
         style={{
-          fontSize: "min(4vh, 4vw)",
+          fontSize: "min(5vh, 5vw)",
           margin: "0.4em",
+          color: "white",
         }}
         onClick={toggleFullscreen}
       >
-        🔳
+        ↕
       </button>
     </div>
   );

@@ -103,6 +103,7 @@ export const ShapeManager: React.FC = () => {
           {currentLattice && (
             <>
               <button
+                title="Save shape"
                 onClick={() => saveShapeToFile(currentLattice)}
                 className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
                 style={{ fontSize: "min(4vh, 4vw)" }}
@@ -118,6 +119,7 @@ export const ShapeManager: React.FC = () => {
                 style={{ display: "none" }}
               />
               <button
+                title="Load shape"
                 onClick={() => fileInputRef.current?.click()}
                 className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
                 style={{ fontSize: "min(4vh, 4vw)" }}

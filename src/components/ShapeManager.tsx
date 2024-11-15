@@ -48,6 +48,7 @@ export const ShapeManager: React.FC = () => {
               alert("Invalid file format. Please provide a valid shape file.");
             }
           } catch (error) {
+            console.error(error);
             alert("Error parsing file. Please provide a valid JSON file.");
           } finally {
             if (fileInputRef.current) {

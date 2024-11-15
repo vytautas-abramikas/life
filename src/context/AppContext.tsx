@@ -34,18 +34,17 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   }, [currentLattice]);
 
   useEffect(() => {
-    if (generation === 0) {
-      if (savedStartingLattice) {
+    (async () => {
+      if (generation === 0 && savedStartingLattice) {
         setCurrentLattice(savedStartingLattice);
       }
-    }
-    if (isRunning && currentLattice) {
-      const nextLattice = getNextGeneration(currentLattice, latticeType);
-      setTimeout(() => {
+      if (isRunning && currentLattice) {
+        const nextLattice = getNextGeneration(currentLattice, latticeType);
         setCurrentLattice(nextLattice);
+        await new Promise((resolve) => setTimeout(resolve, delay));
         setGeneration((prev) => prev + 1);
-      }, delay);
-    }
+      }
+    })();
   }, [isRunning, generation]);
 
   return (

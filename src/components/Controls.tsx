@@ -53,7 +53,7 @@ export const Controls: React.FC = () => {
   const handleRandomizeLattice = () => {
     const randomLattice: boolean[][] = Array.from(
       { length: latticeHeight },
-      () => Array.from({ length: latticeWidth }, () => Math.random() > 0.9)
+      () => Array.from({ length: latticeWidth }, () => Math.random() > 0.5)
     );
     setCurrentLattice(randomLattice);
   };

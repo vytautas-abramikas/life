@@ -31,8 +31,11 @@ export const LatticeSettings: React.FC = () => {
         <h2 className="text-white text-xl font-bold mb-4">Lattice Settings</h2>
         <div className="flex flex-col space-y-4">
           <div className="flex items-center space-x-4">
-            <label className="text-white w-20">Delay:</label>
+            <label htmlFor="set-delay" className="text-white w-20">
+              Delay:
+            </label>
             <input
+              id="set-delay"
               type="text"
               value={delay}
               onChange={handleSetDelay}
@@ -41,8 +44,11 @@ export const LatticeSettings: React.FC = () => {
             />
           </div>
           <div className="flex items-center space-x-4">
-            <label className="text-white w-20">Type:</label>
+            <label htmlFor="set-lattice-type" className="text-white w-20">
+              Type:
+            </label>
             <select
+              id="set-lattice-type"
               value={latticeType}
               onChange={(e) =>
                 setLatticeType(e.target.value as "toroidal" | "bounded")
@@ -54,8 +60,11 @@ export const LatticeSettings: React.FC = () => {
             </select>
           </div>
           <div className="flex items-center space-x-4">
-            <label className="text-white w-20">Colors:</label>
+            <label htmlFor="set-color-scheme" className="text-white w-20">
+              Colors:
+            </label>
             <select
+              id="set-color-scheme"
               value={colorScheme}
               onChange={(e) =>
                 setColorScheme(

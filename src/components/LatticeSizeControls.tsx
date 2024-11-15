@@ -48,8 +48,11 @@ export const LatticeSizeControls: React.FC = () => {
         </h2>
         <div className="flex flex-col space-y-4">
           <div className="flex items-center space-x-4">
-            <label className="text-white w-20">Width:</label>
+            <label htmlFor="set-width" className="text-white w-20">
+              Width:
+            </label>
             <input
+              id="set-width"
               type="text"
               value={localWidth}
               onChange={handleSetWidth}
@@ -58,8 +61,11 @@ export const LatticeSizeControls: React.FC = () => {
             />
           </div>
           <div className="flex items-center space-x-4">
-            <label className="text-white w-20">Height:</label>
+            <label htmlFor="set-height" className="text-white w-20">
+              Height:
+            </label>
             <input
+              id="set-height"
               type="text"
               value={localHeight}
               onChange={handleSetHeight}

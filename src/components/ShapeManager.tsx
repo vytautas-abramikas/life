@@ -110,6 +110,7 @@ export const ShapeManager: React.FC = () => {
               </button>
 
               <input
+                id="file-input"
                 type="file"
                 ref={fileInputRef}
                 onChange={handleFileChange}
@@ -127,6 +128,7 @@ export const ShapeManager: React.FC = () => {
         </div>
         <div className="flex justify-center items-center space-x-4 mb-4">
           <select
+            id="predefined-shape-select"
             className="text-black p-2 rounded-md"
             onChange={(e) => {
               const selected = predefinedShapes.find(

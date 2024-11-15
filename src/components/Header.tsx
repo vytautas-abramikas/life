@@ -6,7 +6,7 @@ export const Header: React.FC = () => {
   return (
     <div
       className="w-full min-h-[10vh] bg-black grid grid-cols-5"
-      style={{ fontSize: "min(1.8vh, 1.8vw)" }}
+      style={{ fontSize: "min(2.2vh, 2.2vw)" }}
     >
       <div className="col-start-1 col-span-1">
         <FullScreenButton />

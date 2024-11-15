@@ -1,6 +1,6 @@
 import { useAppContext } from "../hooks/useAppContext";
 
-const Counter: React.FC = () => {
+export const Counter: React.FC = () => {
   const { generation, population } = useAppContext();
 
   return (
@@ -16,5 +16,3 @@ const Counter: React.FC = () => {
     </div>
   );
 };
-
-export { Counter };

@@ -3,6 +3,7 @@ import { LatticeSizeControls } from "./LatticeSizeControls";
 import { LatticeSettings } from "./LatticeSettings";
 import { ShapeManager } from "./ShapeManager";
 import { useEffect } from "react";
+import { Toast } from "./Toast";
 
 export const Controls: React.FC = () => {
   const {
@@ -14,6 +15,7 @@ export const Controls: React.FC = () => {
     isLatticeSizeControlsVisible,
     isLatticeSettingsVisible,
     isShapeManagerVisible,
+    toastMessage,
     setCurrentLattice,
     setSavedStartingLattice,
     setIsRunning,
@@ -63,6 +65,7 @@ export const Controls: React.FC = () => {
       {isLatticeSizeControlsVisible && <LatticeSizeControls />}
       {isLatticeSettingsVisible && <LatticeSettings />}
       {isShapeManagerVisible && <ShapeManager />}
+      {toastMessage && <Toast />}
       <div className="flex items-center justify-start text-white w-[100%] h-full">
         {!isRunning && generation === 0 && (
           <button

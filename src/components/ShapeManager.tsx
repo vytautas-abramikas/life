@@ -11,6 +11,7 @@ export const ShapeManager: React.FC = () => {
     latticeHeight,
     setCurrentLattice,
     setIsShapeManagerVisible,
+    setToastMessage,
   } = useAppContext();
 
   const [predefinedShapes, setPredefinedShapes] = useState<TShape[]>([]);
@@ -44,12 +45,17 @@ export const ShapeManager: React.FC = () => {
               )
             ) {
               loadShapeIntoLattice(shape);
+              setIsShapeManagerVisible(false);
             } else {
-              alert("Invalid file format. Please provide a valid shape file.");
+              setToastMessage(
+                "Invalid file format. Please provide a valid shape file."
+              );
             }
           } catch (error) {
             console.error(error);
-            alert("Error parsing file. Please provide a valid JSON file.");
+            setToastMessage(
+              "Error parsing file. Please provide a valid JSON file."
+            );
           } finally {
             if (fileInputRef.current) {
               fileInputRef.current.value = "";
@@ -63,7 +69,7 @@ export const ShapeManager: React.FC = () => {
 
   const loadShapeIntoLattice = (shape: TJSONShape) => {
     if (shape.width > latticeWidth || shape.height > latticeHeight) {
-      alert(
+      setToastMessage(
         `The shape does not fit into the current lattice. The shape requires lattice width of ${shape.width} and height of ${shape.height}.`
       );
       return;
@@ -104,7 +110,10 @@ export const ShapeManager: React.FC = () => {
             <>
               <button
                 title="Save shape"
-                onClick={() => saveShapeToFile(currentLattice)}
+                onClick={() => {
+                  saveShapeToFile(currentLattice);
+                  setIsShapeManagerVisible(false);
+                }}
                 className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
                 style={{ fontSize: "min(4vh, 4vw)" }}
               >

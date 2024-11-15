@@ -14,6 +14,7 @@ export type TAppContextProps = {
   isLatticeSizeControlsVisible: boolean;
   isLatticeSettingsVisible: boolean;
   isShapeManagerVisible: boolean;
+  toastMessage: string;
   setColorScheme: React.Dispatch<React.SetStateAction<TColorScheme>>;
   setIsShowBorder: React.Dispatch<React.SetStateAction<boolean>>;
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>;
@@ -31,6 +32,7 @@ export type TAppContextProps = {
   >;
   setIsLatticeSettingsVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setIsShapeManagerVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setToastMessage: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type TColorScheme = "ordinary" | "rgb" | "grayscale" | "rainbow";

@@ -22,10 +22,12 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     boolean[][] | null
   >(null);
   const [isLatticeSizeControlsVisible, setIsLatticeSizeControlsVisible] =
-    useState(false);
+    useState<boolean>(false);
   const [isLatticeSettingsVisible, setIsLatticeSettingsVisible] =
-    useState(false);
-  const [isShapeManagerVisible, setIsShapeManagerVisible] = useState(false);
+    useState<boolean>(false);
+  const [isShapeManagerVisible, setIsShapeManagerVisible] =
+    useState<boolean>(false);
+  const [toastMessage, setToastMessage] = useState<string>("");
 
   useEffect(() => {
     if (currentLattice) {
@@ -63,6 +65,7 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         isLatticeSizeControlsVisible,
         isLatticeSettingsVisible,
         isShapeManagerVisible,
+        toastMessage,
         setColorScheme,
         setIsShowBorder,
         setIsRunning,
@@ -76,6 +79,7 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setIsLatticeSizeControlsVisible,
         setIsLatticeSettingsVisible,
         setIsShapeManagerVisible,
+        setToastMessage,
       }}
     >
       {children}

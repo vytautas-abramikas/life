@@ -15,8 +15,6 @@ export const ShapeManager: React.FC = () => {
   } = useAppContext();
 
   const [predefinedShapes, setPredefinedShapes] = useState<TShape[]>([]);
-  const [selectedPredefinedShape, setSelectedPredefinedShape] =
-    useState<TShape | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -90,17 +88,6 @@ export const ShapeManager: React.FC = () => {
     setCurrentLattice(newLattice);
   };
 
-  const handleLoadPredefinedShape = () => {
-    if (selectedPredefinedShape) {
-      loadShapeIntoLattice(selectedPredefinedShape);
-    }
-    setIsShapeManagerVisible(false);
-  };
-
-  const handleClose = () => {
-    setIsShapeManagerVisible(false);
-  };
-
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-black border border-white rounded-lg p-6 text-center">
@@ -148,10 +135,13 @@ export const ShapeManager: React.FC = () => {
               const selected = predefinedShapes.find(
                 (shape) => shape.name === e.target.value
               );
-              setSelectedPredefinedShape(selected || null);
+              if (selected) {
+                loadShapeIntoLattice(selected);
+                setIsShapeManagerVisible(false);
+              }
             }}
           >
-            <option value="">Select a predefined shape</option>{" "}
+            <option value="">Select a predefined shape</option>
             {predefinedShapes.map((shape) => (
               <option
                 key={shape.name}
@@ -169,17 +159,10 @@ export const ShapeManager: React.FC = () => {
               </option>
             ))}
           </select>
-          <button
-            onClick={handleLoadPredefinedShape}
-            disabled={!selectedPredefinedShape}
-            className="bg-blue-500 disabled:bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-          >
-            Load
-          </button>
         </div>
         <div className="flex justify-center mt-6">
           <button
-            onClick={handleClose}
+            onClick={() => setIsShapeManagerVisible(false)}
             className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
           >
             Close

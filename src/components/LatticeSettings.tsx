@@ -28,11 +28,9 @@ export const LatticeSettings: React.FC = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-black border border-white rounded-lg p-6 text-center">
-        <h2 className="text-white font-bold mb-4" style={{ fontSize: "1.2em" }}>
-          Lattice Settings
-        </h2>
+        <h2 className="text-white font-bold text-xl mb-4">Lattice Settings</h2>
         <div className="flex flex-col space-y-4">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-center space-x-4">
             <label htmlFor="set-delay" className="text-white w-20">
               Delay:
             </label>
@@ -45,7 +43,7 @@ export const LatticeSettings: React.FC = () => {
               placeholder="Delay"
             />
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-center space-x-4">
             <label htmlFor="set-lattice-type" className="text-white w-20">
               Type:
             </label>
@@ -61,7 +59,7 @@ export const LatticeSettings: React.FC = () => {
               <option value="bounded">Bounded</option>
             </select>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-center space-x-4">
             <label htmlFor="set-color-scheme" className="text-white w-20">
               Colors:
             </label>

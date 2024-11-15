@@ -91,9 +91,7 @@ export const ShapeManager: React.FC = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-black border border-white rounded-lg p-6 text-center">
-        <h2 className="text-white font-bold mb-4" style={{ fontSize: "1.2em" }}>
-          Shape Manager
-        </h2>
+        <h2 className="text-white font-bold text-xl mb-4">Shape Manager</h2>
         <div className="flex justify-center space-x-4 mb-4">
           {currentLattice && (
             <>
@@ -103,8 +101,7 @@ export const ShapeManager: React.FC = () => {
                   saveShapeToFile(currentLattice);
                   setIsShapeManagerVisible(false);
                 }}
-                className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
-                style={{ fontSize: "min(4vh, 4vw)" }}
+                className="text-4xl rounded p-1 ml-1 hover:scale-110 transition duration-300"
               >
                 💾
               </button>
@@ -119,8 +116,7 @@ export const ShapeManager: React.FC = () => {
               <button
                 title="Load shape"
                 onClick={() => fileInputRef.current?.click()}
-                className="rounded p-1 ml-1 hover:scale-110 transition duration-300"
-                style={{ fontSize: "min(4vh, 4vw)" }}
+                className="text-4xl rounded p-1 ml-1 hover:scale-110 transition duration-300"
               >
                 📂
               </button>

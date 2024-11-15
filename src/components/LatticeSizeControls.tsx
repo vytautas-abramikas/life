@@ -43,11 +43,11 @@ export const LatticeSizeControls: React.FC = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-black border border-white rounded-lg p-6 text-center">
-        <h2 className="text-white font-bold mb-4" style={{ fontSize: "1.2em" }}>
+        <h2 className="text-white font-bold text-xl mb-4">
           Lattice dimensions
         </h2>
         <div className="flex flex-col space-y-4">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-center space-x-4">
             <label htmlFor="set-width" className="text-white w-20">
               Width:
             </label>
@@ -60,7 +60,7 @@ export const LatticeSizeControls: React.FC = () => {
               placeholder="Width"
             />
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-center space-x-4">
             <label htmlFor="set-height" className="text-white w-20">
               Height:
             </label>

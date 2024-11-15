@@ -14,13 +14,13 @@ export const Lattice: React.FC = () => {
     setCurrentLattice,
   } = useAppContext();
 
-  const [cellSizeRem, setCellSizeRem] = useState(0);
+  const [cellSize, setCellSize] = useState(0);
 
   useEffect(() => {
     const calculateCellSize = () => {
       const cellSizeWidth = window.innerWidth / latticeWidth;
       const cellSizeHeight = (window.innerHeight * 0.9) / latticeHeight;
-      setCellSizeRem(Math.min(cellSizeWidth, cellSizeHeight) / 18);
+      setCellSize(Math.min(cellSizeWidth, cellSizeHeight) * 0.9);
     };
     calculateCellSize();
     window.addEventListener("resize", calculateCellSize);
@@ -49,8 +49,8 @@ export const Lattice: React.FC = () => {
       <div
         className="grid max-w-full max-h-full w-auto h-auto"
         style={{
-          gridTemplateColumns: `repeat(${latticeWidth}, ${cellSizeRem}rem)`,
-          gridTemplateRows: `repeat(${latticeHeight}, ${cellSizeRem}rem)`,
+          gridTemplateColumns: `repeat(${latticeWidth}, ${cellSize}px)`,
+          gridTemplateRows: `repeat(${latticeHeight}, ${cellSize}px)`,
         }}
       >
         {currentLattice.map((row, yIndex) =>

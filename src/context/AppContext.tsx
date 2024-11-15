@@ -68,7 +68,6 @@ const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         setIsShowBorder,
         setIsRunning,
         setGeneration,
-        setPopulation,
         setLatticeType,
         setLatticeWidth,
         setLatticeHeight,

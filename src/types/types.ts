@@ -18,7 +18,6 @@ export type TAppContextProps = {
   setIsShowBorder: React.Dispatch<React.SetStateAction<boolean>>;
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>;
   setGeneration: React.Dispatch<React.SetStateAction<number>>;
-  setPopulation: React.Dispatch<React.SetStateAction<number>>;
   setLatticeType: React.Dispatch<React.SetStateAction<TLatticeType>>;
   setLatticeWidth: React.Dispatch<React.SetStateAction<number>>;
   setLatticeHeight: React.Dispatch<React.SetStateAction<number>>;

@@ -73,7 +73,7 @@ export const Controls: React.FC = () => {
             onClick={() => setIsLatticeSizeControlsVisible(true)}
             className="rounded p-1 ml-1 hover:scale-110 transition duration-300 text-4xl"
           >
-            &#x26F6;
+            📐
           </button>
         )}
         {!isRunning && currentLattice && (
